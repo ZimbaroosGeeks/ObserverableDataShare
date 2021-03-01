@@ -6,8 +6,9 @@ import { ShareData } from '../models/shareData.model';
     providedIn: 'root'
 })
 export class MyDataService {
-    private _shareData: BehaviorSubject<ShareData> = new BehaviorSubject({myData:''});
-
+    private curShareData: ShareData = {myData:'', editMode:false};;
+    private _shareData: BehaviorSubject<ShareData> = new BehaviorSubject(this.curShareData);
+    
     constructor() {
     }
 
@@ -16,6 +17,17 @@ export class MyDataService {
     }
     
     public setData(newData:string):void {
-        this._shareData.next({myData: newData});
+        this.curShareData.myData = newData;
+        this._shareData.next(this.curShareData);
+    }
+
+    public setEdit(): void {
+        this.curShareData.editMode = true;
+        this._shareData.next(this.curShareData);
+    }
+
+    public clearEdit(): void {
+        this.curShareData.editMode = false;
+        this._shareData.next(this.curShareData);
     }
 }

@@ -18,7 +18,7 @@ export class OutputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.localDataService.getData().subscribe((data) => { this.shareData = data; console.log(this.shareData.myData)});
+    this.localDataService.getData().subscribe((data) => { this.shareData = data; console.log(this.shareData)});
   }
 
   public check():void {

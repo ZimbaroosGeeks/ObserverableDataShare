@@ -1,3 +1,4 @@
 export interface ShareData {
-    myData:string
+    myData: string,
+    editMode: boolean
 }
